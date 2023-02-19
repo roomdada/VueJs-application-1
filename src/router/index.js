@@ -13,14 +13,14 @@ const router = createRouter({
      }
     },
     {
-      path: '/courses',
-      name: 'courses',
+      path: '/services',
+      name: 'services',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/CourseList.vue'),
+      component: () => import('../views/ServiceList.vue'),
      meta : {
-       title: "Liste des cours"
+       title: "E-service | Nos differents services"
      },
     },
     {

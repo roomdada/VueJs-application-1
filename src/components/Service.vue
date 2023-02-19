@@ -1,13 +1,13 @@
 <script setup>
-import CategoryCard from './CategoryCard.vue';
+import ServiceCard from './ServiceCard.vue';
  import { onMounted } from 'vue';
- import useCategory from '@/composables/category.js'
+ import useService from '@/composables/service.js'
 
 
-const { getCategories, categories  } = useCategory()
+const { getServices, services  } = useService()
 
  onMounted(async () => {
-   await getCategories();
+   await getServices();
  })
 
 </script>
@@ -21,7 +21,7 @@ const { getCategories, categories  } = useCategory()
                 <h2 class="page-title">
                  Les domaines en vogue
                 </h2>
-                <div class="text-muted mt-1">Domaines recents</div>
+                <div class="text-muted mt-1">10 plus vues</div>
               </div>
               <!-- Page title actions -->
               <div class="col-12 col-md-auto ms-auto d-print-none">
@@ -48,8 +48,8 @@ const { getCategories, categories  } = useCategory()
         <div class="page-body">
           <div class="container-xl">
             <div class="row row-cards">
-              <div class="col-sm-6 col-lg-4" v-for="category in categories" v-bind:key="category.id">
-                  <CategoryCard :category="category"/>
+              <div class="col-sm-6 col-lg-4" v-for="service in services" v-bind:key="service.id">
+                  <ServiceCard :service="service"/>
               </div>
             </div>
             <div class="d-flex">

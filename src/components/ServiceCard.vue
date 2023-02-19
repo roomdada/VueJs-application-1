@@ -1,25 +1,21 @@
 <script setup>
-import { onMounted } from 'vue';
 defineProps({
-  course : {
+  service : {
     type : Object,
     required : true,
     default: {}
   },
 })
 
-
-
-
 </script>
 <template>
     <div class="card card-sm">
-      <a href="#" class="d-block"><img :src="course.image" class="card-img-top"></a>
+      <a href="#" class="d-block"><img :src="service.image" class="card-img-top"></a>
       <div class="card-body">
         <div class="d-flex align-items-center">
           <span class="avatar me-3 rounded" style="background-image: url(@/assets/static/avatars/000m.jpg)"></span>
           <div>
-            <div>{{ course.name }}</div>
+            <div>{{ service.name }}</div>
             <div class="text-muted">3 days ago</div>
           </div>
           <div class="ms-auto">

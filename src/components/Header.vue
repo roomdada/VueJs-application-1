@@ -12,10 +12,10 @@
           <div class="navbar-nav flex-row order-md-last">
             <div class="nav-item d-none d-md-flex me-3">
               <div class="btn-list">
-                <a v-if='! user.loggedIn' href='/register' class="btn" target="_blank" rel="noreferrer">
+                <router-link  v-if='! user.loggedIn' to='/register' class="btn" target="_blank" rel="noreferrer">
                   <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
                   S'inscrire
-                </a>
+                </router-link >
                 <router-link  v-if='user.loggedIn' to="/dashboard" class="btn"  rel="noreferrer">
                   Mon Tableau de bord
                 </router-link >
@@ -135,8 +135,11 @@
 </template>
 <script setup>
 import { useUserStore } from '../stores/user';
-
+import { onMounted } from 'vue';
 const user = useUserStore()
 
 
+onMounted(() => {
+  console.log(user.getUser.id)
+})
 </script>
