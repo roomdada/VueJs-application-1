@@ -1,15 +1,25 @@
 <script setup>
+import { onMounted } from 'vue';
+defineProps({
+  course : {
+    type : Object,
+    required : true,
+    default: {}
+  },
+})
+
+
+
 
 </script>
 <template>
-  <div class="col-sm-6 col-lg-4">
     <div class="card card-sm">
-      <a href="#" class="d-block"><img src="@/assets/static/photos/1b73704b282a8ec6.jpg" class="card-img-top"></a>
+      <a href="#" class="d-block"><img :src="course.image" class="card-img-top"></a>
       <div class="card-body">
         <div class="d-flex align-items-center">
           <span class="avatar me-3 rounded" style="background-image: url(@/assets/static/avatars/000m.jpg)"></span>
           <div>
-            <div>Paweł Kuna</div>
+            <div>{{ course.name }}</div>
             <div class="text-muted">3 days ago</div>
           </div>
           <div class="ms-auto">
@@ -24,7 +34,6 @@
               67
             </a>
           </div>
-        </div>
       </div>
     </div>
   </div>
