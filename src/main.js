@@ -15,8 +15,7 @@ import "@/assets/tabler-vendors.min.css"
 
 
 
-axios.defaults.withCredentials = true
-axios.defaults.baseURL = 'https://e-api.ddev.site'
+axios.defaults.baseURL = 'http://localhost:8000/api'
 
 const app = createApp(App)
 

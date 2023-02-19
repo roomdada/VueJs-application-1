@@ -2,6 +2,8 @@
 import Input from '@/components/forms/Input.vue';
 import axios from 'axios';
 import { reactive } from 'vue';
+import { useUserStore } from '../../stores/user';
+import { useRouter  } from 'vue-router';
 
 const state = reactive({
   first_name: '',
@@ -13,13 +15,10 @@ const state = reactive({
   terms: false,
 })
 
-const onSubmit = async () => {
-  console.log(state)
-  await axios.post('/register', state).then((resp) => {
-    console.log(resp)
-  }).catch((err) => {
-    console.log(err)
-  })
+const user = useUserStore()
+
+const onSubmit = () => {
+  user.register(state)
 }
 
 </script>
@@ -32,6 +31,13 @@ const onSubmit = async () => {
         <form class="card card-md" action="." method="POST" @submit.prevent='onSubmit'>
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Rejoingnez la communauté</h2>
+            <div v-if="user.getErrors.length" class='alert alert-danger'>
+                <ul>
+                   <li v-for="error in user.getErrors">
+                    {{ error }}
+                   </li>
+                </ul>
+            </div>
             <div class="mb-3">
                 <Input label="Nom" v-model="state.first_name" type="text"/>
             </div>

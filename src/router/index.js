@@ -39,6 +39,15 @@ const router = createRouter({
         title: "Connexion"
       }
     },
+
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('../views/Dashboard/Index.vue'),
+      meta : {
+        title: "Connexion"
+      }
+    },
   ]
 })
 

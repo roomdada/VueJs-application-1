@@ -1,11 +1,19 @@
 <script setup>
 import Input from '@/components/forms/Input.vue';
 import { reactive } from 'vue';
+import { useUserStore } from '../../stores/user';
 
 const state = reactive({
   email: '',
   password: '',
 })
+
+const user = useUserStore();
+
+const onSubmit = () => {
+  user.login(state);
+}
+
 </script>
 <template>
  <div class="page page-center">
@@ -13,7 +21,7 @@ const state = reactive({
         <div class="text-center mb-4">
           <a href="." class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" height="36" alt=""></a>
         </div>
-        <form class="card card-md" action="." method="get">
+        <form class="card card-md" action="." method="post" @submit.prevent="onSubmit">
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Connecter a votre espace</h2>
              <div class="mb-3">
