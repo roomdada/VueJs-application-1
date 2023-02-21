@@ -1,3 +1,17 @@
+<script setup>
+import { useUserStore } from '../stores/user';
+import { onMounted } from 'vue';
+const user = useUserStore()
+
+
+onMounted(() => {
+  console.log(user.getUser?.id)
+})
+
+const logout = () => {
+  user.logout()
+}
+</script>
 <template>
    <header class="navbar navbar-expand-md navbar-light d-print-none">
         <div class="container-xl">
@@ -12,13 +26,18 @@
           <div class="navbar-nav flex-row order-md-last">
             <div class="nav-item d-none d-md-flex me-3">
               <div class="btn-list">
-                <router-link  v-if='! user.loggedIn' to='/register' class="btn" target="_blank" rel="noreferrer">
-                  <!-- Download SVG icon from http://tabler-icons.io/i/brand-github -->
+                <router-link  v-if='! user.loggedIn' to='/register' class="btn"  rel="noreferrer">
                   S'inscrire
+                </router-link >
+                <router-link  v-if='! user.loggedIn' to='/login' class="btn"  rel="noreferrer">
+                  Se connecter
                 </router-link >
                 <router-link  v-if='user.loggedIn' to="/dashboard" class="btn"  rel="noreferrer">
                   Mon Tableau de bord
                 </router-link >
+                <a  v-if='user.loggedIn' @click.prevent="logout" class="btn"  rel="noreferrer">
+                  Se deconneter
+                </a >
               </div>
             </div>
             <div class="d-none d-md-flex">
@@ -133,13 +152,3 @@
         </div>
       </header>
 </template>
-<script setup>
-import { useUserStore } from '../stores/user';
-import { onMounted } from 'vue';
-const user = useUserStore()
-
-
-onMounted(() => {
-  console.log(user.getUser.id)
-})
-</script>

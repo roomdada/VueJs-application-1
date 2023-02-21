@@ -12,6 +12,7 @@ const user = useUserStore();
 
 const onSubmit = () => {
   user.login(state);
+  console.log(user.getErrors);
 }
 
 </script>
@@ -24,6 +25,13 @@ const onSubmit = () => {
         <form class="card card-md" action="." method="post" @submit.prevent="onSubmit">
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Connecter a votre espace</h2>
+              <div v-if="user.getErrors.length" class='alert alert-danger'>
+                <ul>
+                   <li v-for="error in user.getErrors">
+                    {{ error }}
+                   </li>
+                </ul>
+            </div>
              <div class="mb-3">
               <Input label="Votre Email" v-model="state.email" type="email"/>
             </div>

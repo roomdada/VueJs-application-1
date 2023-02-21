@@ -5,6 +5,7 @@ export default function useCategory() {
 
   const loading = ref(false)
   const categories = ref({});
+  const error = ref(null);
 
   const getCategories = async () => {
     loading.value = true;
@@ -14,7 +15,9 @@ export default function useCategory() {
         return categories
       }
     }).catch((err) => {
-      console.log(err)
+      if(err.response.status == 404){
+        error.value = "Une erreur est survenue";
+      }
     }).finally(() => {
       loading.value = false;
     })
@@ -22,5 +25,5 @@ export default function useCategory() {
 
 
 
-  return { getCategories, categories  }
+  return { getCategories, categories, loading, error }
 }

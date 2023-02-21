@@ -50,6 +50,33 @@ export const useUserStore = defineStore({
           window.location.href = '/';
         }
       }).catch((err) => {
+        if(err.response.status == 404){
+          this.errors.push('E-mail ou mot de passe incorrect')
+        }
+      })
+    },
+
+    async logout(){
+      this.errors = [];
+      await axios.post('/logout').then((resp) => {
+        if(resp.status == 200){
+          this.user = null;
+          this.token = null;
+          this.loggedIn = false;
+          axios.post('logout').then((resp) => {
+            if(resp.status == 200){
+              localStorage.removeItem('user')
+              localStorage.removeItem('token')
+              delete axios.defaults.headers.common['Authorization']
+              window.location.href = '/login';
+            }
+          })
+          localStorage.removeItem('user')
+          localStorage.removeItem('token')
+          delete axios.defaults.headers.common['Authorization']
+          window.location.href = '/login';
+        }
+      }).catch((err) => {
         if(err.response.status == 422){
           for(const index in err.response.data.errors){
             this.errors.push(err.response.data.errors[index][0] + '')

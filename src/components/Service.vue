@@ -8,6 +8,7 @@ const { getServices, services  } = useService()
 
  onMounted(async () => {
    await getServices();
+   console.log(services)
  })
 
 </script>
@@ -76,6 +77,6 @@ const { getServices, services  } = useService()
             </div>
           </div>
         </div>
-     
+
       </div>
 </template>
