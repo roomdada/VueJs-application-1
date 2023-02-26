@@ -10,12 +10,8 @@ import axios from 'axios'
 import "@/assets/demo.min.css"
 import "@/assets/tabler.css"
 import "@/assets/tabler-vendors.min.css"
-//import "@/assets/demo.min.js"
-//import "@/assets/tabler.js"
-
-
-
-axios.defaults.baseURL = 'https://e-api.ddev.site/api'
+import "@/assets/demo.min.js"
+import "@/assets/tabler.js"
 
 const app = createApp(App)
 

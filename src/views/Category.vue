@@ -1,11 +1,11 @@
 <script setup>
-import ServiceCard from './ServiceCard.vue';
-import useService from '@/composables/service.js'
+import CategoryCard from '@/components/CategoryCard.vue';
+import useCategory from '@/composables/category.js'
 
+const { getCategories, categories, loading  } = useCategory()
 
-const { getServices, services  } = useService()
+getCategories(); // recuperation des categories recentes
 
-getServices();
 </script>
 <template>
     <div class="page-wrapper">
@@ -15,7 +15,7 @@ getServices();
             <div class="row g-2 align-items-center">
               <div class="col">
                 <h2 class="page-title">
-                 Les prestations
+                 Toutes les catégories
                 </h2>
               </div>
               <!-- Page title actions -->
@@ -38,8 +38,8 @@ getServices();
         <div class="page-body">
           <div class="container-xl">
             <div class="row row-cards">
-              <div class="col-sm-6 col-lg-4" v-for="service in services" v-bind:key="service.id">
-                  <ServiceCard :service="service"/>
+              <div class="col-sm-6 col-lg-4" v-for="category in categories" v-bind:key="category.id">
+                  <CategoryCard :category="category"/>
               </div>
             </div>
           </div>

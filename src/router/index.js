@@ -20,7 +20,7 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/ServiceList.vue'),
+      component: () => import('../views/Service.vue'),
      meta : {
        title: "E-service | Nos differents services",
         requiredAuth: false
@@ -46,6 +46,16 @@ const router = createRouter({
     },
 
     {
+      path: '/create/service',
+      name: 'create-service',
+      component: () => import('../views/Dashboard/Services/Create.vue'),
+      meta : {
+        title: "Créer une prestation",
+        requiredAuth: true
+      }
+    },
+
+    {
       path: '/dashboard',
       name: 'dashboard',
       component: () => import('../views/Dashboard/Index.vue'),
@@ -54,6 +64,16 @@ const router = createRouter({
         requiredAuth: true
       }
     },
+
+    {
+      path: '/categories',
+      name: 'categories',
+      component: () => import('../views/Category.vue'),
+      meta : {
+        title: "E-service | Nos differentes categories",
+        requiredAuth: false
+      }
+    }
   ]
 })
 

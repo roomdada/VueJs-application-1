@@ -13,10 +13,9 @@ defineProps({
       <a href="#" class="d-block"><img :src="service.image" class="card-img-top"></a>
       <div class="card-body">
         <div class="d-flex align-items-center">
-          <span class="avatar me-3 rounded" style="background-image: url(@/assets/static/avatars/000m.jpg)"></span>
           <div>
             <div>{{ service.name }}</div>
-            <div class="text-muted">3 days ago</div>
+            <div class="text-muted">{{ service.category.name }}</div>
           </div>
           <div class="ms-auto">
             <a href="#" class="text-muted">

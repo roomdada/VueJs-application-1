@@ -1,21 +1,20 @@
 import { ref } from 'vue'
-import axios from 'axios'
-
+import httpClicent from '../axios';
 export default function useCategory() {
 
   const loading = ref(false)
   const categories = ref({});
   const error = ref(null);
 
-  const getCategories = async () => {
+  const recentCategories = async () => {
     loading.value = true;
-    await axios.get('categories').then((resp) => {
-      if(resp.status == 200){
+    await httpClicent.get('recents/categories').then((resp) => {
+      if(resp.status){
         categories.value = resp.data.data
         return categories
       }
     }).catch((err) => {
-      if(err.response.status == 404){
+      if(! err.status ){
         error.value = "Une erreur est survenue";
       }
     }).finally(() => {
@@ -23,7 +22,21 @@ export default function useCategory() {
     })
   }
 
+  const getCategories = async () => {
+    loading.value = true;
+    await httpClicent.get('categories').then((resp) => {
+      if(resp.status){
+        categories.value = resp.data.data
+        return categories
+      }
+    }).catch((err) => {
+      if(! err.status ){
+        error.value = "Une erreur est survenue";
+      }
+    }).finally(() => {
+      loading.value = false;
+    })
+  }
 
-
-  return { getCategories, categories, loading, error }
+  return { getCategories, recentCategories, categories, loading, error }
 }

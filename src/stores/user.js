@@ -1,14 +1,13 @@
 import { defineStore } from "pinia"
-
-import axios from "axios"
 import { useRouter } from "vue-router"
 
+import httpClicent from "../axios";
 export const useUserStore = defineStore({
   id : 'user',
 
   state: () => ({
     loggedIn : localStorage.getItem('token') ? true : false,
-    user : localStorage.getItem('user') ?? null,
+    user : JSON.parse(localStorage.getItem('user')) ?? null,
     token: localStorage.getItem('token') ?? false,
     errors: []
   }),
@@ -17,13 +16,14 @@ export const useUserStore = defineStore({
     getToken: (state) => state.token,
     getUser: (state) => state.user,
     getErrors: (state) => state.errors,
+    getLoggedIn: (state) => state.loggedIn
 
   },
 
   actions : {
     async register(props){
       this.errors = [];
-      await axios.post('/register', props).then((resp) => {
+      await httpClicent.post('/register', props).then((resp) => {
         if(resp.status == 201){
           window.location.href = '/login';
         }
@@ -39,14 +39,13 @@ export const useUserStore = defineStore({
 
     async login(props){
       this.errors = [];
-      await axios.post('/login', props).then((resp) => {
-        if(resp.status == 200){
+      await httpClicent.post('/login', props).then((resp) => {
+        if(resp.data.status){
           this.user = resp.data.user;
           this.token = resp.data.access_token;
           this.loggedIn = true;
           localStorage.setItem('user', JSON.stringify(this.user))
-          localStorage.setItem('token', JSON.stringify(this.token))
-          axios.defaults.headers.common['Authorization'] = this.token
+          localStorage.setItem('token',this.token)
           window.location.href = '/';
         }
       }).catch((err) => {
@@ -58,22 +57,14 @@ export const useUserStore = defineStore({
 
     async logout(){
       this.errors = [];
-      await axios.post('/logout').then((resp) => {
-        if(resp.status == 200){
+      await httpClicent.post('/logout').then((resp) => {
+        if(resp.status){
           this.user = null;
           this.token = null;
           this.loggedIn = false;
-          axios.post('logout').then((resp) => {
-            if(resp.status == 200){
-              localStorage.removeItem('user')
-              localStorage.removeItem('token')
-              delete axios.defaults.headers.common['Authorization']
-              window.location.href = '/login';
-            }
-          })
+          delete httpClicent.defaults.headers.common['Authorization']
           localStorage.removeItem('user')
           localStorage.removeItem('token')
-          delete axios.defaults.headers.common['Authorization']
           window.location.href = '/login';
         }
       }).catch((err) => {

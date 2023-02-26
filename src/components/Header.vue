@@ -131,12 +131,12 @@ const logout = () => {
                 </div>
               </div>
             </div>
-            <div class="nav-item dropdown">
+            <div class="nav-item dropdown" v-if="user.getLoggedIn">
               <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
                 <span class="avatar avatar-sm" style="background-image: url(@/static/avatars/000m.jpg)"></span>
-                <div class="d-none d-xl-block ps-2">
-                  <div>{{ user.id }}</div>
-                  <div class="mt-1 small text-muted">UI Designer</div>
+                <div class="d-none d-sm-block ps-2">
+                  <div>{{ user.getUser.first_name +" "+ user.getUser.last_name }}</div>
+                  <div class="mt-1 small text-muted">Prestataire</div>
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
