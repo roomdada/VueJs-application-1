@@ -9,12 +9,12 @@ const user = useUserStore();
 const service = useService();
 
 const { getCategories, categories, loading  } = useCategory()
-const { store, errors } = useService()
+const { store, errors, success } = useService()
 
 const state = reactive({
   name: '',
   description: '',
-  image: '',
+  image: null,
   category_id: '',
   user_id: user.getUser.id,
 })
@@ -22,7 +22,24 @@ const state = reactive({
 getCategories()
 
 const onSubmit = async () => {
-   await store(state);
+   await store(state)
+}
+
+const clearState = () => {
+  state.name = ''
+  state.description = ''
+  state.image = null
+  state.category_id = ''
+}
+
+const handleFileUpload = (event) => {
+  const files = event.target.files;
+  const fileReader = new FileReader();
+  fileReader.addEventListener('load', () => {
+    const imageUrl = fileReader.result;
+  });
+ fileReader.readAsDataURL(files[0])
+  state.image = files[0]
 }
 
 </script>
@@ -35,18 +52,30 @@ const onSubmit = async () => {
         <form class="card card-md" action="." method="post" @submit.prevent="onSubmit" enctype="multipart/form-data">
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Ajouter un service</h2>
-              <div v-if="errors.length" class='alert alert-danger'>
+             <div v-if="errors.length" class='alert alert-danger'>
                 <ul>
                    <li v-for="error in errors">
                     {{ error }}
                    </li>
                 </ul>
             </div>
+              <div v-if="success" class='alert alert-success'>
+                <ul>
+                    {{ success }}
+                </ul>
+            </div>
              <div class="mb-3">
               <Input label="Libellé" v-model="state.name" type="text"/>
             </div>
             <div class="mb-3">
-              <Input ref="file" accept="image/*" label="Image" v-model="state.image" type="file"/>
+              <Input
+              label="Image"
+              v-model="state.image"
+               type="file"
+               ref='state.image'
+                @change="handleFileUpload"
+                accept="image/*"
+               />
             </div>
              <div class="mb-3">
              <select class="form-control"  v-model="state.category_id" type="text">
@@ -61,7 +90,7 @@ const onSubmit = async () => {
              </textarea>
             </div>
             <div class="form-footer">
-              <button type="submit" class="btn btn-primary w-100">Se connecter</button>
+              <button type="submit" v-if="! loading" class="btn btn-primary w-100">Enregistrer</button>
             </div>
           </div>
         </form>

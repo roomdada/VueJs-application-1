@@ -57,7 +57,8 @@ export default function useService() {
       }
 
       if(err.response.status === 500){
-        console.log(err.response.data)
+        console.log(err)
+        console.log(props);
         errors.value.push("Une erreur est survenue")
       }
     }).finally(() => {
@@ -66,5 +67,5 @@ export default function useService() {
   }
 
 
-  return { getServices, popularServices,  services, store, loading, errors  }
+  return { getServices, popularServices,  services, store, loading, errors, success  }
 }
