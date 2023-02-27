@@ -73,6 +73,16 @@ const router = createRouter({
         title: "E-service | Nos differentes categories",
         requiredAuth: false
       }
+    },
+
+    {
+      path: "/profile",
+      name: "profile",
+      component: () => import('../views/Auth/Profile.vue'),
+      meta : {
+        title: "Mon profil",
+        requiredAuth: true
+      }
     }
   ]
 })

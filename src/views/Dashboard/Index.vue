@@ -36,7 +36,9 @@ userServices()
           </div>
         </div>
         <div class="page-body">
+
           <div class="container-xl">
+
             <div class="row row-deck row-cards">
               <div class="col-sm-6 col-lg-3">
                 <div class="card">
@@ -166,10 +168,10 @@ userServices()
                     <table class="table card-table table-vcenter text-nowrap datatable">
                       <thead>
                         <tr>
-
                           <th>Date de création</th>
                           <th>Libellé</th>
                           <th>Categorie</th>
+                          <th>Image</th>
                           <th></th>
                         </tr>
                       </thead>
@@ -181,8 +183,9 @@ userServices()
                             <span class="flag flag-country-us"></span>
                            {{ service.category.name }}
                           </td>
-
-
+                          <td>
+                              <img class="avatar" :src="service.image" alt="service image" />
+                          </td>
                           <td class="text-end">
                             <span class="dropdown">
                               <button class="btn dropdown-toggle align-text-top" data-bs-boundary="viewport" data-bs-toggle="dropdown">Actions</button>

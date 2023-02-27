@@ -1,10 +1,9 @@
 <script setup>
 import CategoryCard from './CategoryCard.vue';
 import ServiceCard from './ServiceCard.vue';
-import { onMounted, ref, reactive } from 'vue';
 import useCategory from '@/composables/category.js'
 import useService from '@/composables/service.js'
-
+import Loader from "@/components/Loader.vue"
 const { recentCategories, categories, loading  } = useCategory()
 const { popularServices, services  } = useService()
 
@@ -28,16 +27,7 @@ recentCategories(); // recuperation des categories recentes
           </div>
         </div>
         <!--Loading-->
-
-        <div class="page-body" v-if="loading">
-          <div class="container-xl">
-            <div class="row row-cards container">
-                 <span class='text-center text-lg'>
-                   Chargement des données...
-                 </span>
-            </div>
-          </div>
-        </div>
+        <Loader :loading="loading" />
         <div class="page-body" v-if="! loading">
           <div class="container-xl">
             <div class="row row-cards">

@@ -41,7 +41,6 @@ const logout = () => {
               </div>
             </div>
             <div class="d-none d-md-flex">
-
               <a href="?theme=light" class="nav-link px-0 hide-theme-light" title="Enable light mode" data-bs-toggle="tooltip" data-bs-placement="bottom">
                 <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><circle cx="12" cy="12" r="4" /><path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" /></svg>
@@ -140,12 +139,9 @@ const logout = () => {
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <a href="#" class="dropdown-item">Set status</a>
-                <a href="#" class="dropdown-item">Profile & account</a>
-                <a href="#" class="dropdown-item">Feedback</a>
+                <router-link to="/profile" class="dropdown-item">Profil & compte</router-link>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">Settings</a>
-                <a href="#" class="dropdown-item">Logout</a>
+                <a @click.prevent="logout" class="dropdown-item">Se deconnecter</a>
               </div>
             </div>
           </div>

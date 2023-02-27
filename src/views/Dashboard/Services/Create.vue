@@ -4,6 +4,7 @@ import { reactive } from 'vue';
 import { useUserStore } from '@/stores/user';
 import useCategory from '@/composables/category.js'
 import useService from '@/composables/service.js'
+import ErrorMessage from '@/components/ErrorMessage.vue'
 
 const user = useUserStore();
 const service = useService();
@@ -52,13 +53,7 @@ const handleFileUpload = (event) => {
         <form class="card card-md" action="." method="post" @submit.prevent="onSubmit" enctype="multipart/form-data">
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Ajouter un service</h2>
-             <div v-if="errors.length" class='alert alert-danger'>
-                <ul>
-                   <li v-for="error in errors">
-                    {{ error }}
-                   </li>
-                </ul>
-            </div>
+              <ErrorMessage :errors="errors" />
               <div v-if="success" class='alert alert-success'>
                 <ul>
                     {{ success }}

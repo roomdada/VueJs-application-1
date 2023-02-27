@@ -1,9 +1,10 @@
 <script setup>
 import ServiceCard from './ServiceCard.vue';
 import useService from '@/composables/service.js'
+import Loader from "@/components/Loader.vue"
 
 
-const { getServices, services  } = useService()
+const { getServices, services, loading  } = useService()
 
 getServices();
 </script>
@@ -35,7 +36,8 @@ getServices();
             </div>
           </div>
         </div>
-        <div class="page-body">
+        <Loader :loading="loading" />
+        <div class="page-body" v-if="! loading">
           <div class="container-xl">
             <div class="row row-cards">
               <div class="col-sm-6 col-lg-4" v-for="service in services" v-bind:key="service.id">
