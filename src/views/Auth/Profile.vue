@@ -2,8 +2,6 @@
 import { useUserStore } from '../../stores/user';
 
 const user = useUserStore();
-
-console.log(user.getUser)
 </script>
 <template>
  <div class="page-wrapper">

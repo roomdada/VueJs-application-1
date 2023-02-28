@@ -1,12 +1,6 @@
 <script setup>
 import { useUserStore } from '../stores/user';
-import { onMounted } from 'vue';
 const user = useUserStore()
-
-
-onMounted(() => {
-  console.log(user.getUser?.id)
-})
 
 const logout = () => {
   user.logout()
@@ -132,13 +126,14 @@ const logout = () => {
             </div>
             <div class="nav-item dropdown" v-if="user.getLoggedIn">
               <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-                <span class="avatar avatar-sm" style="background-image: url(@/static/avatars/000m.jpg)"></span>
+                <img class="avatar avatar-sm" :src='user.getUser.avatar'>
                 <div class="d-none d-sm-block ps-2">
                   <div>{{ user.getUser.first_name +" "+ user.getUser.last_name }}</div>
                   <div class="mt-1 small text-muted">Prestataire</div>
                 </div>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                <router-link to="/dashboard" class="dropdown-item">Tableau de bord</router-link>
                 <router-link to="/profile" class="dropdown-item">Profil & compte</router-link>
                 <div class="dropdown-divider"></div>
                 <a @click.prevent="logout" class="dropdown-item">Se deconnecter</a>

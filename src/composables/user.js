@@ -11,7 +11,6 @@ export default function useUser() {
     await httpClicent.get('user/courses').then((resp) => {
       if(resp.status){
         services.value = resp.data.data
-        console.log(services.value)
         return categories
       }
     }).catch((err) => {

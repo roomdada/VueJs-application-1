@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import httpClicent from '../axios';
-
+import { RouterLink } from 'vue-router';
 export default function useService() {
 
   const loading = ref(false)
@@ -46,7 +46,7 @@ export default function useService() {
       if(resp.status){
         services.value = resp.data.data
         success.value = "La prestation a été ajoutée avec succès !"
-        return services
+        window.location.href = '/dashboard'
       }
     }).catch((err) => {
       if(err.response.status === 422){
@@ -58,7 +58,6 @@ export default function useService() {
 
       if(err.response.status === 500){
         console.log(err)
-        console.log(props);
         errors.value.push("Une erreur est survenue")
       }
     }).finally(() => {

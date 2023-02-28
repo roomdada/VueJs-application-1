@@ -1,7 +1,7 @@
 <script setup>
 import CategoryCard from '@/components/CategoryCard.vue';
 import useCategory from '@/composables/category.js'
-
+import Loader from "@/components/Loader.vue"
 const { getCategories, categories, loading  } = useCategory()
 
 getCategories(); // recuperation des categories recentes
@@ -35,7 +35,8 @@ getCategories(); // recuperation des categories recentes
             </div>
           </div>
         </div>
-        <div class="page-body">
+          <Loader :loading="loading" />
+        <div class="page-body" v-if="! loading">
           <div class="container-xl">
             <div class="row row-cards">
               <div class="col-sm-6 col-lg-4" v-for="category in categories" v-bind:key="category.id">
@@ -44,6 +45,5 @@ getCategories(); // recuperation des categories recentes
             </div>
           </div>
         </div>
-
       </div>
 </template>

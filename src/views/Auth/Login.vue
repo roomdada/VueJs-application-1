@@ -2,6 +2,7 @@
 import Input from '@/components/forms/Input.vue';
 import { reactive } from 'vue';
 import { useUserStore } from '../../stores/user';
+import ErrorMessage from '@/components/ErrorMessage.vue'
 
 const state = reactive({
   email: '',
@@ -25,13 +26,7 @@ const onSubmit = () => {
         <form class="card card-md" action="." method="post" @submit.prevent="onSubmit">
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Connecter a votre espace</h2>
-              <div v-if="user.getErrors.length" class='alert alert-danger'>
-                <ul>
-                   <li v-for="error in user.getErrors">
-                    {{ error }}
-                   </li>
-                </ul>
-            </div>
+             <ErrorMessage v-if="user.getErrors.length" :errors="user.getErrors"/>
              <div class="mb-3">
               <Input label="Votre Email" v-model="state.email" type="email"/>
             </div>

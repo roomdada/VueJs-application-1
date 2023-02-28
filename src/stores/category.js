@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-
+import { useCategoryStore } from "@/composables/category.js";
 
 export const useCategoryStore = defineStore({
   id: 'category',
@@ -18,6 +18,7 @@ export const useCategoryStore = defineStore({
 
   actions : {
     async getCategories(){
+      await useCategoryStore.getCategories()
     },
   }
 

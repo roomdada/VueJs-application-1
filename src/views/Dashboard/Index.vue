@@ -1,10 +1,7 @@
 <script setup>
-import { useStatsStore } from '../../stores/stats';
 import { RouterLink } from 'vue-router';
 import useUser from '../../composables/user';
-
 const { userServices, error, loading, services } = useUser();
-const stats = useStatsStore();
 
 userServices()
 </script>

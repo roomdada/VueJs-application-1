@@ -7,7 +7,6 @@ import useService from '@/composables/service.js'
 import ErrorMessage from '@/components/ErrorMessage.vue'
 
 const user = useUserStore();
-const service = useService();
 
 const { getCategories, categories, loading  } = useCategory()
 const { store, errors, success } = useService()
@@ -54,11 +53,6 @@ const handleFileUpload = (event) => {
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Ajouter un service</h2>
               <ErrorMessage :errors="errors" />
-              <div v-if="success" class='alert alert-success'>
-                <ul>
-                    {{ success }}
-                </ul>
-            </div>
              <div class="mb-3">
               <Input label="Libellé" v-model="state.name" type="text"/>
             </div>
