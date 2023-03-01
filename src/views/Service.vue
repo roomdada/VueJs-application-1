@@ -1,6 +1,6 @@
 <script setup>
-import ServiceCard from '@/components/ServiceCard.vue';
-import useService from '@/composables/service.js'
+import ServiceCard from './../components/ServiceCard.vue';
+import useService from './../composables/service.js'
 
 
 const { getServices, services, loading  } = useService()

@@ -1,7 +1,7 @@
 <script setup>
-import CategoryCard from '@/components/CategoryCard.vue';
-import useCategory from '@/composables/category.js'
-import Loader from "@/components/Loader.vue"
+import CategoryCard from './../components/CategoryCard.vue';
+import useCategory from './../composables/category.js'
+import Loader from "./../components/Loader.vue"
 const { getCategories, categories, loading  } = useCategory()
 
 getCategories(); // recuperation des categories recentes
