@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import httpClicent from '../axios';
+import httpClicent from '@/axios';
 import { RouterLink } from 'vue-router';
 export default function useService() {
 

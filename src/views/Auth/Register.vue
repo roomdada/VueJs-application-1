@@ -1,8 +1,7 @@
 <script setup>
 import Input from '@/components/forms/Input.vue';
-import axios from 'axios';
 import { reactive } from 'vue';
-import { useUserStore } from '../../stores/user';
+import { useUserStore } from '@/stores/user';
 import { useRouter  } from 'vue-router';
 import ErrorMessage from '@/components/ErrorMessage.vue'
 

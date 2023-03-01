@@ -1,5 +1,5 @@
 <script setup>
-import ServiceCard from './ServiceCard.vue';
+import ServiceCard from '@/components/ServiceCard.vue';
 import useService from '@/composables/service.js'
 import Loader from "@/components/Loader.vue"
 

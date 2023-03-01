@@ -1,7 +1,7 @@
 <script setup>
 import Input from '@/components/forms/Input.vue';
 import { reactive } from 'vue';
-import { useUserStore } from '../../stores/user';
+import { useUserStore } from '@/stores/user';
 import ErrorMessage from '@/components/ErrorMessage.vue'
 
 const state = reactive({
