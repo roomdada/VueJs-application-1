@@ -1,5 +1,5 @@
 import { ref } from 'vue'
-import httpClicent from '@/axios';
+import httpClicent from '../axios';
 export default function useCategory() {
 
   const loading = ref(false)
