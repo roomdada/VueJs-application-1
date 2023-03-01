@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import { useCategoryStore } from "@/composables/category.js";
+import { useCategoryStore } from "./../composables/category.js";
 
 export const useCategoryStore = defineStore({
   id: 'category',
