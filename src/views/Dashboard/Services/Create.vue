@@ -46,9 +46,6 @@ const handleFileUpload = (event) => {
 <template>
  <div class="page page-center">
       <div class="container-tight py-4">
-        <div class="text-center mb-4">
-          <a href="." class="navbar-brand navbar-brand-autodark"><img src="./static/logo.svg" height="36" alt=""></a>
-        </div>
         <form class="card card-md" action="." method="post" @submit.prevent="onSubmit" enctype="multipart/form-data">
           <div class="card-body">
             <h2 class="card-title text-center mb-4">Ajouter un service</h2>
