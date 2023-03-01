@@ -1,6 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import useUser from '../../composables/user';
+import useUser from '@/composables/user';
 const { userServices, error, loading, services } = useUser();
 
 userServices()

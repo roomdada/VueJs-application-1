@@ -1,6 +1,6 @@
 <script setup>
-import CategoryCard from './CategoryCard.vue';
-import ServiceCard from './ServiceCard.vue';
+import CategoryCard from '@/components/CategoryCard.vue';
+import ServiceCard from '@/components/ServiceCard.vue';
 import useCategory from '@/composables/category.js'
 import useService from '@/composables/service.js'
 import Loader from "@/components/Loader.vue"
