@@ -1,8 +1,9 @@
 <script setup>
+import { reactive } from 'vue'
 import ServiceCard from './components/ServiceCard.vue';
 import useService from '../composables/service.js'
 import Loader from "./components/Loader.vue"
-
+const result = reactive({ show : 6 })
 
 const { getServices, services, loading  } = useService()
 
@@ -40,12 +41,14 @@ getServices();
         <div class="page-body" v-if="! loading">
           <div class="container-xl">
             <div class="row row-cards">
-              <div class="col-sm-6 col-lg-4" v-for="service in services" v-bind:key="service.id">
+              <div class="col-sm-6 col-lg-4" v-for="service in services.slice(0, result.show)" v-bind:key="service.id">
                   <ServiceCard :service="service"/>
+              </div>
+              <div class="d-flex mt-4 page-center">
+                <button class="btn btn-primary">Voir plus</button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
 </template>

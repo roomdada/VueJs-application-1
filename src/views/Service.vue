@@ -1,11 +1,14 @@
 <script setup>
 import ServiceCard from './../components/ServiceCard.vue';
 import useService from './../composables/service.js'
-
+import { reactive } from 'vue'
 
 const { getServices, services, loading  } = useService()
 
-getServices(); // recuperation des categories recentes
+getServices();
+// recuperation des categories recentes
+
+const result = reactive({ show : 6 })
 
 </script>
 <template>
@@ -39,9 +42,12 @@ getServices(); // recuperation des categories recentes
         <div class="page-body">
           <div class="container-xl">
             <div class="row row-cards">
-              <div class="col-sm-6 col-lg-4" v-for="service in services" v-bind:key="service.id">
+              <div class="col-sm-6 col-lg-4" v-for="service in services.slice(0, result.show)" v-bind:key="service.id">
                   <ServiceCard :service="service"/>
               </div>
+                <div class="d-flex mt-4 page-center" v-if="result.show != services.length">
+                  <button @click='result.show += 3' class="btn btn-primary">Charger plus de service</button>
+                </div>
             </div>
           </div>
         </div>

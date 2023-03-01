@@ -1,4 +1,5 @@
 <script setup>
+import "lazysizes";
 defineProps({
   category : {
     type : Object,
@@ -10,7 +11,9 @@ defineProps({
 </script>
 <template>
     <div class="card card-sm">
-      <a href="#" class="d-block"><img :src="category.image" class="card-img-top"></a>
+      <a href="#" class="d-block">
+        <img async='decoding' :data-src="category.image" class="card-img-top lazyload">
+      </a>
       <div class="card-body">
         <div class="d-flex align-items-center">
           <div>
@@ -21,3 +24,13 @@ defineProps({
     </div>
   </div>
 </template>
+<style  scoped>
+.lazyload,
+.lazyloading {
+	opacity: 0;
+}
+.lazyloaded {
+	opacity: 1;
+	transition: opacity 400ms;
+}
+</style>

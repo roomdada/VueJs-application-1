@@ -1,4 +1,6 @@
 <script setup>
+import "lazysizes";
+
 defineProps({
   service : {
     type : Object,
@@ -10,7 +12,9 @@ defineProps({
 </script>
 <template>
     <div class="card card-sm">
-      <a href="#" class="d-block"><img :src="service.image" class="card-img-top"></a>
+      <a href="#" class="d-block">
+          <img async='decoding' :data-src="service.image" class="card-img-top lazyload">
+      </a>
       <div class="card-body">
         <div class="d-flex align-items-center">
           <div>
@@ -33,3 +37,13 @@ defineProps({
     </div>
   </div>
 </template>
+<style  scoped>
+.lazyload,
+.lazyloading {
+	opacity: 0;
+}
+.lazyloaded {
+	opacity: 1;
+	transition: opacity 6000ms;
+}
+</style>
