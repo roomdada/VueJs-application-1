@@ -1,8 +1,8 @@
 <script setup>
 import CategoryCard from './CategoryCard.vue';
 import ServiceCard from './ServiceCard.vue';
-import useCategory from './../composables/category.js'
-import useService from './../composables/service.js'
+import useCategory from '../composables/category.js'
+import useService from '../composables/service.js'
 import Loader from "./Loader.vue"
 const { recentCategories, categories, loading  } = useCategory()
 const { popularServices, services  } = useService()

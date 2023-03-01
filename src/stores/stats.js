@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import httpClicent from './../axios'
+import httpClicent from '../axios'
 
 export const useStatsStore = defineStore({
   id: 'stats',

@@ -1,7 +1,7 @@
 import { defineStore } from "pinia"
 import { useRouter } from "vue-router"
 
-import httpClicent from "./../axios";
+import httpClicent from "../axios";
 export const useUserStore = defineStore({
   id : 'user',
 
